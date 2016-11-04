@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/03 23:18:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/04 04:53:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		ft_printf(const char *format, ...)
 	va_list		args;
 
 	va_start(args, format);
-	read_args(format, &args);
+	read_args((char*)format, &args);
 	va_end(args);
 	return (0);
 }

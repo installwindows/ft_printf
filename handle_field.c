@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 16:58:26 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/03 22:48:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/04 01:24:29 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ int		handle_field(t_flags *flags, char *s)
 	}
 	else
 		ft_putnstr(s, size);
+	return (0);
 }

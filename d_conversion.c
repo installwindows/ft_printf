@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_conversion.c                                     :+:      :+:    :+:   */
+/*   d_conversion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:34:09 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/04 01:04:08 by varnaud          ###   ########.fr       */
+/*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
+/*   Updated: 2016/11/04 04:22:57 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "ft_printf.h"
 #include "libft.h"
+#include "ft_printf.h"
 
-void	s_conversion(t_flags *flags, va_list *args)
+void	d_conversion(t_flags *flags, va_list *args)
 {
-	char	*arg;
+	int		d;
 
-	arg = va_arg(*args, char *);
-	handle_field(flags, arg);
+	d = va_arg(*args, int);
+
 }

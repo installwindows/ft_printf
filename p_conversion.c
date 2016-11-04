@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_conversion.c                                     :+:      :+:    :+:   */
+/*   p_conversion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:34:09 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/04 01:04:08 by varnaud          ###   ########.fr       */
+/*   Created: 2016/11/04 01:05:40 by varnaud           #+#    #+#             */
+/*   Updated: 2016/11/04 01:38:01 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "ft_printf.h"
 #include "libft.h"
+#include "ft_printf.h"
 
-void	s_conversion(t_flags *flags, va_list *args)
+void	p_conversion(t_flags *flags, va_list *args)
 {
-	char	*arg;
+	void	*p;
 
-	arg = va_arg(*args, char *);
-	handle_field(flags, arg);
+	p = va_arg(*args, void *);
+	ft_putstr("0x");
+	ft_putnbr_base((long long)p, 16);
 }

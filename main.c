@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/04 04:24:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/07 22:44:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 int		main(void)
 {
-	int		n = 42;
+	int		n = -42;
 
-	ft_printf("|%15d|...|%p|\n", "Hello World", &n);
-	printf("|%15d|...|%p|\n", "Hello World", &n);
+	ft_printf("|%04d|\n", n);
+	printf("|%04d|\n", n);
+	//ft_printf("|%15d|...|%p|\n", "Hello World", &n);
+	//printf("|%15d|...|%p|\n", "Hello World", &n);
 	//ft_printf("%s...%s...%s...", "Hello", "world", "!");
 	//ft_printf("%#10ld...%s...%010.5hhc...%%");
 	//printf("|%-20.20s|\n", "Ayylmao");

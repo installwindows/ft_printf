@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/12 06:59:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/16 23:39:15 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,12 @@ void	d_conversion(t_flags *flags, va_list *args)
 
 	d = va_arg(*args, int);
 	len = ft_intlen(d);
-	if (len < flags->width)
-	{
-		n = (char*)malloc(flags->width + len + 1);
-		if (d < 0)
-			*n = '-';
-		
-		ft_memset(n + (d < 0), flags->zero ? '0' : ' ', flags->width - len);
-		tmp = ft_itoa(d);
-		ft_strcpy(n + (d < 0) + flags->width - len, tmp + (d < 0));
-		free(tmp);
-	}
-	else
-		n = ft_itoa(d);
-	ft_putstr(n);
-	free(n);
+	tmp = flags->precision == 0 && d == 0 ? ft_strnew(0) : ft_itoa(d);
+	if (flags->zero)
+		if (d < 0 && len--)
+			ft_putchar('-');
+	tmp = ft_itoa(d);
+	handle_field(flags, tmp + (d < 0 && flags->zero), flags->zero &&
+			!(d == 0 && flags->precision == 0) ? '0' : ' ');
+	free(tmp);
 }

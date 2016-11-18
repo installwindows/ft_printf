@@ -6,7 +6,7 @@
 /*   By: varnaud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:20:22 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:45:23 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 12:57:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	handle_num(int n, int base, t_flags *flags)
 				ft_putstr(n > 0 ? "0" : "");
 			else if (flags->conversion == 'x' || flags->conversion == 'X')
 				ft_putstr(flags->conversion == 'x' ? "0x" : "0X");
-		ft_putnbr_base(n, base);
+		flags->conversion == 'x' ? ft_putnbr_base(n, base) :
+		ft_putNBR_base(n, base);
 		while (flags->width-- >= ft_intlen(n) + flags->hashtag)
 			ft_putchar(' ');
 	}
@@ -43,6 +44,7 @@ void	handle_num(int n, int base, t_flags *flags)
 		while (flags->zero && flags->width-- >= ft_intlen(n) + flags->hashtag)
 			ft_putchar('0');
 		if (!(n == 0 && flags->precision == 0))
-			ft_putnbr_base(n, base);
+			flags->conversion == 'x' ? ft_putnbr_base(n, base) :
+				ft_putNBR_base(n, base);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:21:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 14:25:40 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_flags
 int				ft_printf(const char *format, ...)
 				__attribute__ ((format (printf, 1, 2)));
 int				handle_field(t_flags *flags, char *s, char c);
-void			handle_num(int n, int base, t_flags *flags);
+void			handle_num(long long n, int base, t_flags *flags);
 void			do_conversion(t_flags *flags, va_list *args);
 void			s_conversion(t_flags *flags, va_list *args);
 void			S_conversion(t_flags *flags, va_list *args);

@@ -6,14 +6,14 @@
 /*   By: varnaud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:20:22 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/18 12:57:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 14:25:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	handle_num(int n, int base, t_flags *flags)
+void	handle_num(long long n, int base, t_flags *flags)
 {
 	if (flags->minus)
 	{

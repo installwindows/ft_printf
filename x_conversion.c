@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:09:29 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:34:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 14:29:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	x_conversion(t_flags *flags, va_list *args)
 {
-	int		d;
+	unsigned int	d;
 
-	d = va_arg(*args, int);
+	d = va_arg(*args, unsigned int);
 	handle_num(d, 16, flags);
 }

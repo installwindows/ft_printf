@@ -6,25 +6,31 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:43:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 14:55:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <wchar.h>
 #include <stdio.h>
 #include "ft_printf.h"
 #include "libft.h"
 
 int		main(void)
 {
-	int		n = 0;
+	int		n = 97;
 	int		d = -42;
+	char	*s = "こんにちはお元気ですか";
 
-	printf("|%#010x|\n", 42);
-	ft_printf("|%#010x|\n", 42);
-	printf("|%+04.d|\n", n);
-	ft_printf("|%+04.d|\n", n);
-	printf("|%+04.d|\n", d);
-	ft_printf("|%+04.d|\n", d);
+	printf("|%s|\n", s);
+	ft_printf("|%s|\n", s);
+	//printf("|%4c|\n", n);
+	//ft_printf("|%4c|\n", n);
+	//printf("|%#010X|\n", 42);
+	//ft_printf("|%#010X|\n", 42);
+	//printf("|%+04.d|\n", n);
+	//ft_printf("|%+04.d|\n", n);
+	//printf("|%+04.d|\n", d);
+	//ft_printf("|%+04.d|\n", d);
 	//ft_printf("|%15d|...|%p|\n", "Hello World", &n);
 	//printf("|%15d|...|%p|\n", "Hello World", &n);
 	//ft_printf("%s...%s...%s...", "Hello", "world", "!");

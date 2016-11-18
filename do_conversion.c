@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 21:57:40 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/04 01:18:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/17 22:32:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	do_conversion(t_flags *flags, va_list *args)
 {
+	const char *lookup = "sSpdDioOuUxXcC";
 	void	(*conversions[14])(t_flags *flags, va_list *args);
 
 	conversions[0] = s_conversion;
@@ -32,5 +33,5 @@ void	do_conversion(t_flags *flags, va_list *args)
 	conversions[11] = X_conversion;
 	conversions[12] = c_conversion;
 	conversions[13] = C_conversion;
-	(*conversions[flags->conversion])(flags, args);
+	(*conversions[ft_strchr(lookup, flags->conversion) - lookup])(flags, args);
 }

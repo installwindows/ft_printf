@@ -6,13 +6,14 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2016/11/04 04:45:51 by varnaud          ###   ########.fr        #
+#    Updated: 2016/11/17 22:18:50 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  ft_printf.c \
 	  handle_field.c \
+	  handle_num.c \
 	  do_conversion.c \
 	  s_conversion.c \
 	  S_conversion.c \

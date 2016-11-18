@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/12 04:19:02 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/17 22:35:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 void	flag_characters(char **format, t_flags *flags)
 {
 	if (**format == '#')
-		flags->hashtag = 1;
+		flags->hashtag = 3;
 	else if (**format == '0')
 		flags->zero = 1;
 	else if (**format == '-')
 		flags->minus = 1;
+	else if (**format == '+')
+		flags->plus = 1;
 	else if (**format == ' ')
 		flags->space = 1;
 	else
@@ -95,8 +97,6 @@ void	printflags(const char *format, t_flags *f)
 
 void	print_arg(char **format, va_list *args)
 {
-	const char *lookup = "sSpdDioOuUxXcC";
-
 	t_flags	flags;
 
 	ft_memset(&flags, 0, sizeof(t_flags));
@@ -105,10 +105,11 @@ void	print_arg(char **format, va_list *args)
 	(*format)++;
 	//printf("format: |%s|\n", *format);
 	flag_characters(format, &flags);
+	flag_characters(format, &flags);
 	field_width(format, &flags);
 	precision(format, &flags);
 	length_modifier(format, &flags);
-	flags.conversion = ft_strchr(lookup, **format) - lookup;
+	flags.conversion = **format;
 	(*format)++;
 
 	//printflags(*format, &flags);

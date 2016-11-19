@@ -36,21 +36,21 @@ typedef struct	s_flags
 int				ft_printf(const char *format, ...)
 				__attribute__ ((format (printf, 1, 2)));
 int				handle_field(t_flags *flags, char *s, char c);
-void			handle_num(long long n, int base, t_flags *flags);
-void			do_conversion(t_flags *flags, va_list *args);
-void			s_conversion(t_flags *flags, va_list *args);
-void			S_conversion(t_flags *flags, va_list *args);
-void			p_conversion(t_flags *flags, va_list *args);
-void			d_conversion(t_flags *flags, va_list *args);
-void			D_conversion(t_flags *flags, va_list *args);
-void			i_conversion(t_flags *flags, va_list *args);
-void			o_conversion(t_flags *flags, va_list *args);
-void			O_conversion(t_flags *flags, va_list *args);
-void			u_conversion(t_flags *flags, va_list *args);
-void			U_conversion(t_flags *flags, va_list *args);
-void			x_conversion(t_flags *flags, va_list *args);
-void			X_conversion(t_flags *flags, va_list *args);
-void			c_conversion(t_flags *flags, va_list *args);
-void			C_conversion(t_flags *flags, va_list *args);
+int				handle_num(long long n, int base, t_flags *flags);
+int				do_conversion(t_flags *flags, va_list *args);
+int				s_conversion(t_flags *flags, va_list *args);
+int				S_conversion(t_flags *flags, va_list *args);
+int				p_conversion(t_flags *flags, va_list *args);
+int				d_conversion(t_flags *flags, va_list *args);
+int				D_conversion(t_flags *flags, va_list *args);
+int				i_conversion(t_flags *flags, va_list *args);
+int				o_conversion(t_flags *flags, va_list *args);
+int				O_conversion(t_flags *flags, va_list *args);
+int				u_conversion(t_flags *flags, va_list *args);
+int				U_conversion(t_flags *flags, va_list *args);
+int				x_conversion(t_flags *flags, va_list *args);
+int				X_conversion(t_flags *flags, va_list *args);
+int				c_conversion(t_flags *flags, va_list *args);
+int				C_conversion(t_flags *flags, va_list *args);
 
 #endif

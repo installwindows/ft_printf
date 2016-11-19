@@ -14,11 +14,12 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	p_conversion(t_flags *flags, va_list *args)
+int		p_conversion(t_flags *flags, va_list *args)
 {
 	void	*p;
 
 	p = va_arg(*args, void *);
 	ft_putstr("0x");
 	ft_putnbr_base((long long)p, 16);
+	return (0);
 }

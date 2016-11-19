@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 21:57:40 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:32:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 19:59:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	do_conversion(t_flags *flags, va_list *args)
+int		do_conversion(t_flags *flags, va_list *args)
 {
 	const char *lookup = "sSpdDioOuUxXcC";
-	void	(*conversions[14])(t_flags *flags, va_list *args);
+	int		(*conversions[14])(t_flags *flags, va_list *args);
 
 	conversions[0] = s_conversion;
 	conversions[1] = S_conversion;
@@ -33,5 +33,6 @@ void	do_conversion(t_flags *flags, va_list *args)
 	conversions[11] = X_conversion;
 	conversions[12] = c_conversion;
 	conversions[13] = C_conversion;
-	(*conversions[ft_strchr(lookup, flags->conversion) - lookup])(flags, args);
+	return ((*conversions[ft_strchr(lookup, flags->conversion) - lookup])
+			(flags, args));
 }

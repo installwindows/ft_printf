@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	C_conversion(t_flags *flags, va_list *args)
+int		C_conversion(t_flags *flags, va_list *args)
 {
+	return (0);
 }

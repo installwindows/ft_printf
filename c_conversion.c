@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:10:20 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/18 14:03:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:03:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	c_conversion(t_flags *flags, va_list *args)
+int		c_conversion(t_flags *flags, va_list *args)
 {
 	char	*c;
 
@@ -24,4 +24,5 @@ void	c_conversion(t_flags *flags, va_list *args)
 	c[1] = '\0';
 	handle_field(flags, c, ' ');
 	free(c);
+	return (0);
 }

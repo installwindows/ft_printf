@@ -14,10 +14,11 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	i_conversion(t_flags *flags, va_list *args)
+int		i_conversion(t_flags *flags, va_list *args)
 {
 	int		d;
 
 	d = va_arg(*args, int);
 	handle_num(d, 10, flags);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/17 22:35:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 19:58:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ void	printflags(const char *format, t_flags *f)
 	printf("\n");
 }
 
-void	print_arg(char **format, va_list *args)
+int		print_arg(char **format, va_list *args)
 {
 	t_flags	flags;
+	int		nbprint;
 
 	ft_memset(&flags, 0, sizeof(t_flags));
 	flags.width = -1;
@@ -114,33 +115,39 @@ void	print_arg(char **format, va_list *args)
 
 	//printflags(*format, &flags);
 
-	do_conversion(&flags, args);	
+	nbprint = do_conversion(&flags, args);
+	return (nbprint);
 }
 
 int		read_args(char *format, va_list *args)
 {
 	char	*fmt;
+	int		nbprint;
 
+	nbprint = 0;
 	if ((fmt = ft_strchr(format, '%')) == NULL)
 	{
 		ft_putstr(format);
-		return (0);
+		return (ft_strlen(format));
 	}
 	else
 	{
 		ft_putnstr(format, fmt - format);
-		print_arg(&fmt, args);
+		nbprint += fmt - format;
+		nbprint += print_arg(&fmt, args);
 		format = fmt;
 	}
-	return (read_args(format, args));
+	return (nbprint + read_args(format, args));
 }
 
 int		ft_printf(const char *format, ...)
 {
 	va_list		args;
+	int			r;
 
+//	ft_putstr("IM CALLED\n");
 	va_start(args, format);
-	read_args((char*)format, &args);
+	r = read_args((char*)format, &args);
 	va_end(args);
-	return (0);
+	return (r);
 }

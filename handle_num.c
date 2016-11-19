@@ -6,14 +6,14 @@
 /*   By: varnaud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:20:22 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/18 14:25:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:03:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	handle_num(long long n, int base, t_flags *flags)
+int		handle_num(long long n, int base, t_flags *flags)
 {
 	if (flags->minus)
 	{
@@ -47,4 +47,5 @@ void	handle_num(long long n, int base, t_flags *flags)
 			flags->conversion == 'x' ? ft_putnbr_base(n, base) :
 				ft_putNBR_base(n, base);
 	}
+	return (0);
 }

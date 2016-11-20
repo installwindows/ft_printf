@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/19 15:18:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:01:27 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ int		print_arg(char **format, va_list *args)
 	t_flags	flags;
 	int		nbprint;
 
+	if (**format == '%')
+		return ((int)ft_putchar('%'));
 	ft_memset(&flags, 0, sizeof(t_flags));
 	flags.width = -1;
 	flags.precision = -1;
-	(*format)++;
 	//printf("format: |%s|\n", *format);
 	flag_characters(format, &flags);
 	flag_characters(format, &flags);
@@ -132,6 +133,7 @@ int		read_args(char *format, va_list *args, int nbprint)
 	{
 		ft_putnstr(format, fmt - format);
 		nbprint += fmt - format;
+		fmt++;
 		nbprint += print_arg(&fmt, args);
 		format = fmt;
 	}

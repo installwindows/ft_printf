@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/19 15:55:48 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:14:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ int		main(void)
 	int		n = 97;
 	int		d = -42;
 	char	*s = "こんにちはお元気ですか";
-	printf("%S", L"米");
+	//printf("%S", L"米");
 
-	printf("|%s|\n", s);
-	ft_printf("|%s|\n", s);
+	printf("|%.4d|\n", 42);
+	ft_printf("|%.4d|\n", 42);
+
+	//printf("|%s|\n", s);
+	//ft_printf("|%s|\n", s);
 	//printf("|%4c|\n", n);
 	//ft_printf("|%4c|\n", n);
 	//printf("|%#010X|\n", 42);

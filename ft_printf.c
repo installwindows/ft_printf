@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/18 19:58:49 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:18:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,16 +119,14 @@ int		print_arg(char **format, va_list *args)
 	return (nbprint);
 }
 
-int		read_args(char *format, va_list *args)
+int		read_args(char *format, va_list *args, int nbprint)
 {
 	char	*fmt;
-	int		nbprint;
 
-	nbprint = 0;
 	if ((fmt = ft_strchr(format, '%')) == NULL)
 	{
-		ft_putstr(format);
-		return (ft_strlen(format));
+		nbprint += ft_putstr(format);
+		return (nbprint);
 	}
 	else
 	{
@@ -137,7 +135,7 @@ int		read_args(char *format, va_list *args)
 		nbprint += print_arg(&fmt, args);
 		format = fmt;
 	}
-	return (nbprint + read_args(format, args));
+	return (read_args(format, args, nbprint));
 }
 
 int		ft_printf(const char *format, ...)
@@ -147,7 +145,7 @@ int		ft_printf(const char *format, ...)
 
 //	ft_putstr("IM CALLED\n");
 	va_start(args, format);
-	r = read_args((char*)format, &args);
+	r = read_args((char*)format, &args, 0);
 	va_end(args);
 	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:08:30 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/18 14:29:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:50:57 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ int		O_conversion(t_flags *flags, va_list *args)
 
 	flags->l = 1;
 	d = va_arg(*args, unsigned long);
-	handle_num(d, 8, flags);
-	return (0);
+	return ((int)handle_num(d, 8, flags));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   C_conversion.c                                     :+:      :+:    :+:   */
+/*   lc_conversion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:10:44 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/04 01:10:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2016/11/21 17:32:35 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int		C_conversion(t_flags *flags, va_list *args)
+int		lc_conversion(t_flags *flags, va_list *args)
 {
 	return (0);
 }

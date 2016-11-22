@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2016/11/18 19:34:08 by varnaud          ###   ########.fr        #
+#    Updated: 2016/11/21 17:30:25 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,19 +18,19 @@ SRC = main.c \
 	  handle_num.c \
 	  do_conversion.c \
 	  s_conversion.c \
-	  S_conversion.c \
+	  ls_conversion.c \
 	  p_conversion.c \
 	  d_conversion.c \
-	  D_conversion.c \
+	  ld_conversion.c \
 	  i_conversion.c \
 	  o_conversion.c \
-	  O_conversion.c \
+	  lo_conversion.c \
 	  u_conversion.c \
-	  U_conversion.c \
+	  lu_conversion.c \
 	  x_conversion.c \
-	  X_conversion.c \
+	  cx_conversion.c \
 	  c_conversion.c \
-	  C_conversion.c
+	  lc_conversion.c
 
 OBJ = $(SRC:.c=.o)
 OBJLIB = libft/*.o

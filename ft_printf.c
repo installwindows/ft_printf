@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/19 17:01:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/08 16:20:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 void	flag_characters(char **format, t_flags *flags)
 {
 	if (**format == '#')
-		flags->hashtag = 3;
+		flags->f |= F_HASH;
 	else if (**format == '0')
-		flags->zero = 1;
+		flags->f |= F_ZERO;
 	else if (**format == '-')
-		flags->minus = 1;
+		flags->f |= F_MINUS;
 	else if (**format == '+')
-		flags->plus = 1;
+		flags->f |= F_PLUS;
 	else if (**format == ' ')
-		flags->space = 1;
+		flags->f |= F_SPACE;
 	else
 		return ;
 	(*format)++;
@@ -40,13 +40,17 @@ void	field_width(char **format, t_flags *flags)
 		return ;
 	flags->width = ft_atoi(*format);
 	if (flags->width > 0 || **format == '0')
+	{
+		flags->f |= F_WIDTH;
 		(*format) += ft_intlen(flags->width);
+	}
 }
 
 void	precision(char **format, t_flags *flags)
 {
 	if (**format == '.')
 	{
+		flags->f |= F_PRECISION;
 		flags->precision = ft_atoi(++(*format));
 		if (flags->precision > 0 || **format == '0')
 			(*format) += ft_intlen(flags->precision);
@@ -56,20 +60,20 @@ void	precision(char **format, t_flags *flags)
 void	length_modifier(char **format, t_flags *flags)
 {
 	if (**format == 'h' && *(*format + 1) == 'h')
-		flags->hh = 1;
+		flags->f |= F_HH;
 	else if (**format == 'h')
-		flags->h = 1;
+		flags->f |= F_H;
 	else if (**format == 'l' && *(*format + 1) == 'l')
-		flags->ll = 1;
+		flags->f |= F_LL;
 	else if (**format == 'l')
-		flags->l = 1;
+		flags->f |= F_L;
 	else if (**format == 'j')
-		flags->j = 1;
+		flags->f |= F_J;
 	else if (**format == 'z')
-		flags->z = 1;
+		flags->f |= F_Z;
 	else
 		return ;
-	if (flags->hh || flags->ll)
+	if ((flags->f & F_HH) || (flags->f & F_LL))
 		(*format) += 2;
 	else
 		(*format)++;
@@ -79,19 +83,19 @@ void	printflags(const char *format, t_flags *f)
 {
 	printf("format: |%s|\n", format);
 	printf("conversion: %d\n", f->conversion);
-	printf("hashtag: %d\n", f->hashtag);
-	printf("zero: %d\n", f->zero);
-	printf("minus: %d\n", f->minus);
-	printf("plus: %d\n", f->plus);
-	printf("space: %d\n", f->space);
-	printf("width: %d\n", f->width);
-	printf("precision: %d\n", f->precision);
-	printf("hh: %d\n", f->hh);
-	printf("h: %d\n", f->h);
-	printf("l: %d\n", f->l);
-	printf("ll: %d\n", f->ll);
-	printf("j: %d\n", f->j);
-	printf("z: %d\n", f->z);
+	printf("hash: %d\n", f->f & F_HASH);
+	printf("zero: %d\n", f->f & F_ZERO);
+	printf("minus: %d\n", f->f & F_MINUS);
+	printf("plus: %d\n", f->f & F_PLUS);
+	printf("space: %d\n", f->f & F_SPACE);
+	printf("width: %d %d\n", f->f & F_WIDTH, f->width);
+	printf("precision: %d %d\n", f->f & F_PRECISION, f->precision);
+	printf("hh: %d\n", f->f & F_HH);
+	printf("h: %d\n", f->f & F_H);
+	printf("l: %d\n", f->f & F_L);
+	printf("ll: %d\n", f->f & F_LL);
+	printf("j: %d\n", f->f & F_J);
+	printf("z: %d\n", f->f & F_Z);
 	printf("\n");
 }
 
@@ -103,8 +107,6 @@ int		print_arg(char **format, va_list *args)
 	if (**format == '%')
 		return ((int)ft_putchar('%'));
 	ft_memset(&flags, 0, sizeof(t_flags));
-	flags.width = -1;
-	flags.precision = -1;
 	//printf("format: |%s|\n", *format);
 	flag_characters(format, &flags);
 	flag_characters(format, &flags);
@@ -114,9 +116,9 @@ int		print_arg(char **format, va_list *args)
 	flags.conversion = **format;
 	(*format)++;
 
-	//printflags(*format, &flags);
-
-	nbprint = do_conversion(&flags, args);
+	printflags(*format, &flags);
+	//nbprint = do_conversion(&flags, args);
+	nbprint = 0;
 	return (nbprint);
 }
 

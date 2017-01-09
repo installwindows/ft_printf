@@ -6,12 +6,21 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/22 03:52:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/08 18:04:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
+
+char	*create_number(va_list *args, t_flags *f, int base)
+{
+	void	*type;
+	char	*number;
+
+	type = va_arg(*args, f->conversion == 'u' ? unsigned long long : long long);
+
+}
 
 char	*create_unumber(va_list *args, t_flags *f, int base)
 {

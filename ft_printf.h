@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/21 17:29:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/08 16:27:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 # define FT_PRINTF_H
 # pragma GCC diagnostic ignored "-Wdangling-else"
 # include <stdarg.h>
+# define F_HASH 1
+# define F_ZERO 2
+# define F_MINUS 4
+# define F_PLUS 8
+# define F_SPACE 16
+# define F_WIDTH 32
+# define F_PRECISION 64
+# define F_HH 128
+# define F_H 256
+# define F_L 512
+# define F_LL 1024
+# define F_J 2048
+# define F_Z 4096
+
 
 typedef struct	s_flags
 {
 	char		conversion;
-	int			hashtag;
-	int			zero;
-	int			minus;
-	int			plus;
-	int			space;
 	int			width;
 	int			precision;
-	int			hh;
-	int			h;
-	int			l;
-	int			ll;
-	int			j;
-	int			z;
+	int			f;
 }				t_flags;
 
 int				ft_printf(const char *format, ...)
 				__attribute__ ((format (printf, 1, 2)));
-int				handle_field(t_flags *flags, char *s, char c);
-int				handle_num(long long n, int base, t_flags *flags);
-int				do_conversion(t_flags *flags, va_list *args);
+int				handle_string(t_flags *flags, char *s, char c);
+//int				handle_num(long long n, int base, t_flags *flags);
+//int				do_conversion(t_flags *flags, va_list *args);
 int				s_conversion(t_flags *flags, va_list *args);
 int				ls_conversion(t_flags *flags, va_list *args);
 int				p_conversion(t_flags *flags, va_list *args);

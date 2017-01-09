@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/20 15:00:23 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/08 16:28:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		main(void)
 	char	*s = "こんにちはお元気ですか";
 	//printf("%S", L"米");
 
-	printf("|%-5.4d|\n", 42);
-	ft_printf("|%-5.4d|\n", 42);
+	printf("|%-5.4ld|\n", 42);
+	ft_printf("|%-5.4ld|\n", 42);
 
 	//printf("|%s|\n", s);
 	//ft_printf("|%s|\n", s);

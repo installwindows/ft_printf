@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/09 22:07:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 01:15:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		main(void)
 	printf("%d\n", r);
 
 
-	printf   ("printf...: |%-5.4d|\n", -42);
-	ft_printf("ft_printf: |%-5.4d|\n", -42);
+	printf("%d\n", printf   ("printf...: |%-5.4d| r:", -42));
+	printf("%d\n", ft_printf("ft_printf: |%-5.4d| r:", -42));
 
 
 	//printf("%S", L"米");

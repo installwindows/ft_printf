@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/09 17:59:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 21:58:17 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int		d_conversion(t_flags *flags, va_list *args)
 		d = va_arg(*args, intmax_t);
 	else if (flags->f & F_Z)
 		d = va_arg(*args, size_t);
+	else
+		d = va_arg(*args, int);
 	return (handle_signed_number(d, flags));
 }

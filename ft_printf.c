@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/09 16:06:02 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 21:42:29 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	field_width(char **format, t_flags *flags)
 	if (flags->width > 0 || **format == '0')
 	{
 		flags->f |= F_WIDTH;
-		(*format) += ft_intlen(flags->width);
+		(*format) += ft_numlen(flags->width);
 	}
 }
 
@@ -53,7 +53,7 @@ void	precision(char **format, t_flags *flags)
 		flags->f |= F_PRECISION;
 		flags->precision = ft_atoi(++(*format));
 		if (flags->precision > 0 || **format == '0')
-			(*format) += ft_intlen(flags->precision);
+			(*format) += ft_numlen(flags->precision);
 	}
 }
 

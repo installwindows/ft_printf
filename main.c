@@ -6,10 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/08 16:28:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 17:59:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <locale.h>
 #include <wchar.h>
 #include <stdio.h>
 #include "ft_printf.h"
@@ -17,13 +18,31 @@
 
 int		main(void)
 {
+	setlocale(LC_ALL, "");
+	int		r = 0;
 	int		n = 97;
 	int		d = -42;
-	char	*s = "こんにちはお元気ですか";
+	wchar_t	*wcstr = L"こんにちはお元気ですか";
+	wchar_t	*wcstr2 = L"שלום עולם";
+
+	r = printf   ("printf...: |%ls| r: ", wcstr);
+	printf("%d\n", r);
+	r = ft_printf("ft_printf: |%ls| r: ", wcstr);
+	printf("%d\n", r);
+
+	r = printf   ("printf...: |%-40ls| r: ", wcstr2);
+	printf("%d\n", r);
+	r = ft_printf("ft_printf: |%-40ls| r: ", wcstr2);
+	printf("%d\n", r);
+
+
+	printf("%#05x\n", 42);
+
+
 	//printf("%S", L"米");
 
-	printf("|%-5.4ld|\n", 42);
-	ft_printf("|%-5.4ld|\n", 42);
+	//printf("|%-5.4ld|\n", 42);
+	//ft_printf("|%-5.4ld|\n", 42);
 
 	//printf("|%s|\n", s);
 	//ft_printf("|%s|\n", s);

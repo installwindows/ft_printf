@@ -21,12 +21,18 @@ int		main(int argc, char **argv)
 	//printf("%ls\n", wc_str);
 	//printf("%c", mb_str);
 	//printf("%d", sizeof(wchar_t));
+	/*
 	while (*wc_str)
 	{
 		size = wcrtomb(mb_str, *wc_str, NULL);
 		write(1, mb_str, size);
 		wc_str++;
 	}
+	*/
+	//printf("\n%lu\n%lu\n%lu\n", sizeof(intmax_t), sizeof(long long), sizeof(size_t));
+	//
+	printf("|% 1.0d|\n", 0);
+	//
 	//printf("%10s\n", "abc");
 	//n = printf("%.9ls\n", wc_str);
 	//printf("%d sizeof %d\n", n, sizeof(wc_str));

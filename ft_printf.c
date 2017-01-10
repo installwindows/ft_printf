@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/08 16:20:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 16:06:02 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	printflags(const char *format, t_flags *f)
 int		print_arg(char **format, va_list *args)
 {
 	t_flags	flags;
-	int		nbprint;
 
 	if (**format == '%')
 		return ((int)ft_putchar('%'));
@@ -116,10 +115,8 @@ int		print_arg(char **format, va_list *args)
 	flags.conversion = **format;
 	(*format)++;
 
-	printflags(*format, &flags);
-	//nbprint = do_conversion(&flags, args);
-	nbprint = 0;
-	return (nbprint);
+	//printflags(*format, &flags);
+	return (do_conversion(&flags, args));
 }
 
 int		read_args(char *format, va_list *args, int nbprint)

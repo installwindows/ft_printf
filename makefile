@@ -6,13 +6,14 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/09 11:46:07 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/09 15:58:22 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRC = ft_printf.c \
+	  handle_num.c \
 	  handle_string.c \
 	  handle_wcstr.c \
 	  do_conversion.c \

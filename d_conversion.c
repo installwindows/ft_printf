@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/19 15:24:33 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 17:59:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,21 @@
 
 int		d_conversion(t_flags *flags, va_list *args)
 {
-	int		d;
+	long long	d;
 
-	if (flags->precision >= 0)
-		flags->zero = 0;
-	d = va_arg(*args, int);
-	return ((int)handle_num(d, 10, flags));
+	if (flags->f & F_PRECISION && flags->precision >= 0)
+		flags->f ^= F_ZERO;
+	if (flags->f & F_HH)
+		d = va_arg(*args, char);
+	else if (flags->f & F_H)
+		d = va_arg(*args, short int);
+	else if (flags->f & F_L)
+		d = va_arg(*args, long int);
+	else if (flags->f & F_LL)
+		d = va_arg(*args, long long int);
+	else if (flags->f & F_J)
+		d = va_arg(*args, intmax_t);
+	else if (flags->f & F_Z)
+		d = va_arg(*args, size_t);
+	return (handle_signed_number(d, flags));
 }

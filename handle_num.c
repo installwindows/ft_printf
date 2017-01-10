@@ -6,7 +6,7 @@
 /*   By: varnaud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:20:22 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/21 16:27:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/09 15:58:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int		handle_num(long long n, int base, t_flags *flags)
 {
+	/*
 	ssize_t	nbprint;
 
 	nbprint = 0;
@@ -51,4 +52,6 @@ int		handle_num(long long n, int base, t_flags *flags)
 														ft_putNBR_base(n, base);
 	}
 	return (nbprint);
+	*/
+	return (0);
 }

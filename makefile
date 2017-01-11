@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/10 18:35:16 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/11 00:43:10 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = ft_printf.c \
 	  x_conversion.c \
 	  cx_conversion.c \
 	  c_conversion.c \
-	  lc_conversion.c
+	  lc_conversion.c \
+	  error_conversion.c
 
 OBJ = $(SRC:.c=.o)
 OBJLIB = libft/*.o

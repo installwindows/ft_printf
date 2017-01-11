@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 16:54:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 00:42:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# pragma GCC diagnostic ignored "-Wdangling-else"
+//# pragma GCC diagnostic ignored "-Wdangling-else"
 # include <stdarg.h>
 # include <wchar.h>
 # define F_HASH 1
@@ -38,8 +38,8 @@ typedef struct	s_flags
 	int			f;
 }				t_flags;
 
-int				ft_printf(const char *format, ...)
-				__attribute__ ((format (printf, 1, 2)));
+int				ft_printf(const char *format, ...);
+				//__attribute__ ((format (printf, 1, 2)));
 int				handle_string(t_flags *flags, char *s, char c);
 //int				handle_num(long long n, int base, t_flags *flags);
 int				handle_wcstr(t_flags *flags, wchar_t *wcstr);
@@ -61,5 +61,6 @@ int				x_conversion(t_flags *flags, va_list *args);
 int				cx_conversion(t_flags *flags, va_list *args);
 int				c_conversion(t_flags *flags, va_list *args);
 int				lc_conversion(t_flags *flags, va_list *args);
+int				error_conversion(t_flags *flags, va_list *args);
 
 #endif

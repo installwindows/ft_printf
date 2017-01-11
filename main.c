@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 00:05:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 00:31:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		main(void)
 {
-	goto d;
+	goto err;
 	/* z length modifier tests */
 z:	
 	{
@@ -35,19 +35,26 @@ z:
 	/* c conversion */
 c:	
 	{
-		printf("%d\n", printf   ("printf...: |%.c| r:", 0));
-		printf("%d\n", ft_printf("ft_printf: |%.c| r:", 0));
+		printf("%d\n", printf   ("printf...: |%3c| r:", 0));
+		printf("%d\n", ft_printf("ft_printf: |%3c| r:", 0));
 		return (0);
 	}
 
 	/* d conversion */
 d:
 	{
-		printf("%d\n", printf   ("printf...: |%.d, %.0d| r:", 0, 0));
-		printf("%d\n", ft_printf("ft_printf: |%.d, %.0d| r:", 0, 0));
+		printf("%d\n", printf   ("printf...: |%hhO| r:", USHRT_MAX));
+		printf("%d\n", ft_printf("ft_printf: |%hhO| r:", USHRT_MAX));
 		return (0);
 	}
 
+	/* errors */
+err:
+	{
+		printf("%d\n", printf   ("{%-15Z}", 123));
+		printf("%d\n", ft_printf("{%-15Z}", 123));
+		return (0);
+	}
 	/* tests */
 test:
 	{

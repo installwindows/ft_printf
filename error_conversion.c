@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wcrtomb.c                                       :+:      :+:    :+:   */
+/*   error_conversion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/08 20:06:43 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/08 23:26:37 by varnaud          ###   ########.fr       */
+/*   Created: 2017/01/11 00:39:19 by varnaud           #+#    #+#             */
+/*   Updated: 2017/01/11 00:45:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t	ft_wcrtomb(char *s, wchar_t widechar)
+#include <stdarg.h>
+#include "libft.h"
+#include "ft_printf.h"
+
+int		error_conversion(t_flags *flags, va_list *args)
 {
-	int		i;
-	int		byte_count;
-	long	wc;
+	char	err[2];
 
-	byte_count = 1;
-	wc = widechar;
-	if (wc <= 0x7F)
-	{
-		s[0] = (char)wc;
-		s[1] = 0;
-	}
-	else
-	{
-		if (wc <= 0x7FF)
-
-	}
+	err[0] = flags->conversion;
+	err[1] = '\0';
+	return (handle_string(flags, err, ' '));
 }

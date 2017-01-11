@@ -6,14 +6,13 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/09 21:32:48 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/10 18:35:16 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRC = ft_printf.c \
-	  handle_num.c \
 	  handle_string.c \
 	  handle_wcstr.c \
 	  handle_number.c \
@@ -36,10 +35,21 @@ SRC = ft_printf.c \
 OBJ = $(SRC:.c=.o)
 OBJLIB = libft/*.o
 
-all:
+all: $(NAME)
+
+$(NAME):
 	make -C libft/ fclean && make -C libft/
 	gcc -c $(SRC) -Ilibft/
 	ar rc $(NAME) $(OBJ) $(OBJLIB)
 	ranlib $(NAME)
+
+clean:
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
 test:
 	gcc main.c $(SRC) -Ilibft/ -Llibft/ -lft

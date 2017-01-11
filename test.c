@@ -14,7 +14,13 @@ int		main(int argc, char **argv)
 	size_t		size = 0;
 	int			n = 0;
 
-	setlocale(LC_ALL, "");
+	setlocale(LC_CTYPE, "");
+
+
+	write(1, wc_str, 9);
+
+
+
 	//memset(&mbstate, 0, sizeof(mbstate));
 	//size = wcrtomb(&mb_str, *wc_str, &mbstate);
 
@@ -31,7 +37,7 @@ int		main(int argc, char **argv)
 	*/
 	//printf("\n%lu\n%lu\n%lu\n", sizeof(intmax_t), sizeof(long long), sizeof(size_t));
 	//
-	printf("|% 1.0d|\n", 0);
+	//printf("|% 1.0d|\n", 0);
 	//
 	//printf("%10s\n", "abc");
 	//n = printf("%.9ls\n", wc_str);

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/09 21:58:17 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 17:00:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int		d_conversion(t_flags *flags, va_list *args)
 	if (flags->f & F_PRECISION && flags->precision >= 0)
 		flags->f ^= F_ZERO;
 	if (flags->f & F_HH)
-		d = va_arg(*args, char);
+		d = va_arg(*args, int);
 	else if (flags->f & F_H)
-		d = va_arg(*args, short int);
+		d = va_arg(*args, int);
 	else if (flags->f & F_L)
 		d = va_arg(*args, long int);
 	else if (flags->f & F_LL)
@@ -32,7 +32,7 @@ int		d_conversion(t_flags *flags, va_list *args)
 	else if (flags->f & F_J)
 		d = va_arg(*args, intmax_t);
 	else if (flags->f & F_Z)
-		d = va_arg(*args, size_t);
+		d = va_arg(*args, ssize_t);
 	else
 		d = va_arg(*args, int);
 	return (handle_signed_number(d, flags));

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 15:34:09 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/08 18:09:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 17:17:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		s_conversion(t_flags *flags, va_list *args)
 	else
 	{
 		arg = va_arg(*args, char *);
+		if (arg == NULL)
+			arg = "(null)";
 		return ((int)handle_string(flags, arg, ' '));
 	}
 }

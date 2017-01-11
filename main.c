@@ -6,10 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 01:15:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 18:32:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include <locale.h>
 #include <wchar.h>
 #include <stdio.h>
@@ -18,6 +19,23 @@
 
 int		main(void)
 {
+	goto z;
+	/* z length modifier tests */
+z:	
+	{
+		printf("%d\n", printf   ("printf...: |%zu, %zu| r:", 0, ULLONG_MAX));
+		printf("%d\n", ft_printf("ft_printf: |%zu, %zu| r:", 0, ULLONG_MAX));
+		return (0);
+	}
+	
+	/* tests */
+test:
+	{
+		printf("%d %d\n", sizeof(long long), sizeof(size_t));
+		return (0);
+	}
+
+	/*
 	setlocale(LC_ALL, "");
 	int		r = 0;
 	int		n = 97;
@@ -29,17 +47,20 @@ int		main(void)
 	printf("%d\n", r);
 	r = ft_printf("ft_printf: |%ls| r: ", wcstr);
 	printf("%d\n", r);
-
 	r = printf   ("printf...: |%-40ls| r: ", wcstr2);
 	printf("%d\n", r);
 	r = ft_printf("ft_printf: |%-40ls| r: ", wcstr2);
 	printf("%d\n", r);
 
 
+	
+	printf("%d\n", printf   ("printf...: |%10s| r:", 0));
+	printf("%d\n", ft_printf("ft_printf: |%10s| r:", 0));
+
 	printf("%d\n", printf   ("printf...: |%-5.4d| r:", -42));
 	printf("%d\n", ft_printf("ft_printf: |%-5.4d| r:", -42));
 
-
+	*/
 	//printf("%S", L"米");
 
 	//printf("|%-5.4ld|\n", 42);

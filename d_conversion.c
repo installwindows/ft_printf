@@ -6,12 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 17:00:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 20:07:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
+#include <inttypes.h>
 #include "libft.h"
 #include "ft_printf.h"
 

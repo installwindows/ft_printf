@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 18:32:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 18:45:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ z:
 	{
 		printf("%d\n", printf   ("printf...: |%zu, %zu| r:", 0, ULLONG_MAX));
 		printf("%d\n", ft_printf("ft_printf: |%zu, %zu| r:", 0, ULLONG_MAX));
+
+		printf("%d\n", printf   ("printf...: |%zo, %zo| r:", 0, ULLONG_MAX));
+		printf("%d\n", ft_printf("ft_printf: |%zo, %zo| r:", 0, ULLONG_MAX));
+
 		return (0);
 	}
 	

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 18:31:13 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 18:48:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,16 @@ int		handle_unsigned_number(unsigned long long n, int b, t_flags *f)
 	int		nbprint;
 
 	nbprint = 0;
+	if (f->f & F_HASH)
+		nbprint += print_hash(n, f);
 	if (f->f & F_MINUS)
 	{
-		nbprint += print_hash(n, f);
 		nbprint += print_unsigned_number(n, b, f);
 		if (f->f & F_WIDTH && f->width > nbprint)
 			nbprint += ft_putnchar(' ', f->width - nbprint);
 	}
 	else
 	{
-		nbprint += print_hash(n ,f);
 		if (f->f & F_WIDTH && f->width > nbprint + (ft_unumlen_base(n, b) >
 					f->precision ? ft_unumlen_base(n, b) : f->precision))
 			nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width -

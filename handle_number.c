@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 18:48:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 00:08:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int		print_signed_number(long long n, t_flags *f)
 	neg = n < 0;
 	if (f->f & F_PRECISION && f->precision > ft_snumlen(n))
 		nbprint += ft_putnchar('0', f->precision - ft_snumlen(n));
-	nbprint += ft_putdigit(n);
+	if (f->f & F_PRECISION && f->precision == 0)
+		;
+	else
+		nbprint += ft_putdigit(n);
 	return (nbprint);
 }
 
@@ -34,7 +37,10 @@ int		print_unsigned_number(unsigned long long n, int base, t_flags *f)
 	nbprint = 0;
 	if (f->f & F_PRECISION && f->precision > ft_unumlen_base(n, base))
 		nbprint += ft_putnchar('0', f->precision - ft_unumlen_base(n, base));
-	nbprint += ft_putudigit_base(n, base, f->conversion == 'X' ? ft_itocc :
+	if (f->f & F_PRECISION && f->precision == 0)
+		;
+	else
+		nbprint += ft_putudigit_base(n, base, f->conversion == 'X' ? ft_itocc :
 			ft_itoc);
 	return (nbprint);
 }

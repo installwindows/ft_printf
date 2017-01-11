@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:06:45 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 20:07:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 00:03:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		d_conversion(t_flags *flags, va_list *args)
 	long long	d;
 
 	if (flags->f & F_PRECISION && flags->precision >= 0)
-		flags->f ^= F_ZERO;
+		flags->f &= ~F_ZERO;
 	if (flags->f & F_HH)
 		d = va_arg(*args, int);
 	else if (flags->f & F_H)

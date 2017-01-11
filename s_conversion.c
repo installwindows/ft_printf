@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 15:34:09 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 17:17:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 22:34:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		s_conversion(t_flags *flags, va_list *args)
 	if (flags->f & F_L)
 	{
 		wcstr = va_arg(*args, wchar_t *);
+		if (wcstr == NULL)
+			wcstr = L"(null)";
 		return ((int)handle_wcstr(flags, wcstr));
 	}
 	else

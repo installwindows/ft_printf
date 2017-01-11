@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 18:45:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 00:05:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		main(void)
 {
-	goto z;
+	goto d;
 	/* z length modifier tests */
 z:	
 	{
@@ -32,6 +32,22 @@ z:
 		return (0);
 	}
 	
+	/* c conversion */
+c:	
+	{
+		printf("%d\n", printf   ("printf...: |%.c| r:", 0));
+		printf("%d\n", ft_printf("ft_printf: |%.c| r:", 0));
+		return (0);
+	}
+
+	/* d conversion */
+d:
+	{
+		printf("%d\n", printf   ("printf...: |%.d, %.0d| r:", 0, 0));
+		printf("%d\n", ft_printf("ft_printf: |%.d, %.0d| r:", 0, 0));
+		return (0);
+	}
+
 	/* tests */
 test:
 	{

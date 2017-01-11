@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:10:44 by varnaud           #+#    #+#             */
-/*   Updated: 2016/11/21 17:32:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/10 23:46:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 
 int		lc_conversion(t_flags *flags, va_list *args)
 {
-	return (0);
+	flags->f |= F_L;
+	return (c_conversion(flags, args));
 }

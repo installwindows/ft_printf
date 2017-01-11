@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/09 21:42:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 13:44:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ int		print_arg(char **format, va_list *args)
 	t_flags	flags;
 
 	if (**format == '%')
+	{
+		(*format)++;
 		return ((int)ft_putchar('%'));
+	}
 	ft_memset(&flags, 0, sizeof(t_flags));
 	//printf("format: |%s|\n", *format);
 	flag_characters(format, &flags);
@@ -114,7 +117,8 @@ int		print_arg(char **format, va_list *args)
 	length_modifier(format, &flags);
 	flags.conversion = **format;
 	(*format)++;
-
+	if (args == NULL)
+		return (0);
 	//printflags(*format, &flags);
 	return (do_conversion(&flags, args));
 }

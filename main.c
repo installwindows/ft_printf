@@ -6,12 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 00:31:25 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 15:54:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include <locale.h>
+#include <stdlib.h>
 #include <wchar.h>
 #include <stdio.h>
 #include "ft_printf.h"
@@ -19,7 +20,8 @@
 
 int		main(void)
 {
-	goto err;
+	setlocale(LC_ALL, "");
+	goto test;
 	/* z length modifier tests */
 z:	
 	{
@@ -51,14 +53,24 @@ d:
 	/* errors */
 err:
 	{
-		printf("%d\n", printf   ("{%-15Z}", 123));
-		printf("%d\n", ft_printf("{%-15Z}", 123));
+		printf("%d\n", printf   ("|%+d|", -42));
+		printf("%d\n", ft_printf("|%+d|", -42));
+		return (0);
+	}
+
+	/* mix */
+mix:
+	{
+		printf("%d\n", printf   ("printf...: |%s %C %d %p %x %% %S| r:", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير"));
+		printf("%d\n", ft_printf("ft_printf: |%s %C %d %p %x %% %S| r:", "bonjour ", L'該', 42, &free, 42, L"لحم خنزير"));
 		return (0);
 	}
 	/* tests */
 test:
 	{
-		printf("%d %d\n", sizeof(long long), sizeof(size_t));
+		char	*test = "derp";
+		printf("... %.0p %.p\n", 0, 0);
+		ft_printf("ft: %.0p %.p\n", 0, 0);
 		return (0);
 	}
 

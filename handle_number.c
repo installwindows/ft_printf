@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 00:08:59 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 15:35:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		print_signed_number(long long n, t_flags *f)
 	neg = n < 0;
 	if (f->f & F_PRECISION && f->precision > ft_snumlen(n))
 		nbprint += ft_putnchar('0', f->precision - ft_snumlen(n));
-	if (f->f & F_PRECISION && f->precision == 0)
+	if (f->f & F_PRECISION && f->precision == 0 && n == 0)
 		;
 	else
 		nbprint += ft_putdigit(n);
@@ -37,11 +37,14 @@ int		print_unsigned_number(unsigned long long n, int base, t_flags *f)
 	nbprint = 0;
 	if (f->f & F_PRECISION && f->precision > ft_unumlen_base(n, base))
 		nbprint += ft_putnchar('0', f->precision - ft_unumlen_base(n, base));
-	if (f->f & F_PRECISION && f->precision == 0)
+	if ((f->f & F_PRECISION && f->precision == 0 && n == 0) ||
+		(n == 0 && f->f & F_HASH))
 		;
 	else
 		nbprint += ft_putudigit_base(n, base, f->conversion == 'X' ? ft_itocc :
 			ft_itoc);
+	if (f->conversion == 'p' && n == 0 && !(f->f & F_PRECISION && f->precision))
+		nbprint += ft_putudigit_base(n, base, ft_itoc);
 	return (nbprint);
 }
 
@@ -56,7 +59,7 @@ int		handle_signed_number(long long n, t_flags *f)
 	{
 		if (f->f & F_SPACE && !(f->f & F_PLUS) && !neg)
 			nbprint += ft_putchar(' ');
-		if (f->f & F_PLUS)
+		if (f->f & F_PLUS && !neg)
 			nbprint += ft_putchar('+');
 		if (neg)
 			nbprint += ft_putchar('-');
@@ -68,7 +71,7 @@ int		handle_signed_number(long long n, t_flags *f)
 	{
 		if (f->f & F_SPACE && !(f->f & F_PLUS) && !neg)
 			nbprint += ft_putchar(' ');
-		if (f->f & F_PLUS)
+		if (f->f & F_PLUS && !neg)
 			nbprint += ft_putchar('+');
 		neg = neg + nbprint + (ft_snumlen(n) > f->precision ? ft_snumlen(n) :
 				f->precision);
@@ -85,12 +88,14 @@ int		handle_signed_number(long long n, t_flags *f)
 
 int		print_hash(unsigned long long n, t_flags *f)
 {
-	if (f->conversion == 'o' && n != 0)
+	if ((f->conversion == 'o' || f->conversion == 'O'))
 		return (ft_putchar('0'));
-	if (f->conversion == 'x' && n != 0)
+	if (f->conversion == 'x' && !(f->f & F_PRECISION))
+		return (ft_putstr(n == 0 ? "0" : "0x"));
+	if (f->conversion == 'X' && !(f->f & F_PRECISION))
+		return (ft_putstr(n == 0 ? "0" : "0X"));
+	if (f->conversion == 'p')
 		return (ft_putstr("0x"));
-	if (f->conversion == 'X' && n != 0)
-		return (ft_putstr("0X"));
 	return (0);
 }
 

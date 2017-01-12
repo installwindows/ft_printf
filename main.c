@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 15:54:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 16:49:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int		main(void)
 {
-	setlocale(LC_ALL, "");
+	//setlocale(LC_ALL, "");
 	goto test;
 	/* z length modifier tests */
 z:	
@@ -69,8 +69,7 @@ mix:
 test:
 	{
 		char	*test = "derp";
-		printf("... %.0p %.p\n", 0, 0);
-		ft_printf("ft: %.0p %.p\n", 0, 0);
+		printf("... %03c\n", 0);
 		return (0);
 	}
 

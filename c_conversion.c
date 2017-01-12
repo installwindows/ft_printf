@@ -6,14 +6,37 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:10:20 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 23:54:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/11 17:55:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <wchar.h>
-#include "libft.h"
+#include <stdarg.h>
 #include "ft_printf.h"
+#include "libft.h"
+
+int		handle_c(t_flags *f, char c)
+{
+	int		nbprint;
+
+	nbprint = 0;
+	if (f->f & F_MINUS)
+	{
+	}
+	else
+	{
+
+	}
+	return (nbprint);
+}
+
+int		handle_wc(t_flags *f, wchar_t wc)
+{
+	int		nbprint;
+
+	nbprint = 0;
+	return (nbprint);
+}
 
 int		c_conversion(t_flags *flags, va_list *args)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_number.c                                    :+:      :+:    :+:   */
+/*   handle_unumber.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 17:52:38 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 19:23:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int		print_signed_number(long long n, t_flags *f)
-{
-	int		neg;
-	int		nbprint;
-
-	nbprint = 0;
-	neg = n < 0;
-	if (f->f & F_PRECISION && f->precision > ft_snumlen(n))
-		nbprint += ft_putnchar('0', f->precision - ft_snumlen(n));
-	if (f->f & F_PRECISION && f->precision == 0 && n == 0)
-		;
-	else
-		nbprint += ft_putdigit(n);
-	return (nbprint);
-}
-
-int		print_unsigned_number(unsigned long long n, int base, t_flags *f)
+static int	print_unsigned_number(unsigned long long n, int base, t_flags *f)
 {
 	int		nbprint;
 
@@ -48,45 +32,7 @@ int		print_unsigned_number(unsigned long long n, int base, t_flags *f)
 	return (nbprint);
 }
 
-int		handle_signed_number(long long n, t_flags *f)
-{
-	int		neg;
-	int		nbprint;
-
-	nbprint = 0;
-	neg = n < 0;
-	if (f->f & F_MINUS)
-	{
-		if (f->f & F_SPACE && !(f->f & F_PLUS) && !neg)
-			nbprint += ft_putchar(' ');
-		if (f->f & F_PLUS && !neg)
-			nbprint += ft_putchar('+');
-		if (neg)
-			nbprint += ft_putchar('-');
-		nbprint += print_signed_number(n, f);
-		if (f->f & F_WIDTH && f->width > nbprint)
-			nbprint += ft_putnchar(' ', f->width - nbprint);
-	}
-	else
-	{
-		if (f->f & F_SPACE && !(f->f & F_PLUS) && !neg)
-			nbprint += ft_putchar(' ');
-		if (f->f & F_PLUS && !neg)
-			nbprint += ft_putchar('+');
-		neg = neg + nbprint + (ft_snumlen(n) > f->precision ? ft_snumlen(n) :
-				f->precision);
-		if (n < 0 && f->f & F_ZERO)
-			nbprint += ft_putchar('-');
-		if (f->f & F_WIDTH && f->width > neg)
-			nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width - neg);
-		if (n < 0 && !(f->f & F_ZERO))
-			nbprint += ft_putchar('-');
-		nbprint += print_signed_number(n, f);
-	}
-	return (nbprint);
-}
-
-int		print_hash(unsigned long long n, t_flags *f)
+static int	print_hash(unsigned long long n, t_flags *f)
 {
 	if ((f->conversion == 'o' || f->conversion == 'O') && f->precision <
 			ft_unumlen_base(n, 8))
@@ -100,7 +46,7 @@ int		print_hash(unsigned long long n, t_flags *f)
 	return (0);
 }
 
-int		handle_unsigned_number(unsigned long long n, int b, t_flags *f)
+int			handle_unsigned_number(unsigned long long n, int b, t_flags *f)
 {
 	int		nbprint;
 

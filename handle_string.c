@@ -6,14 +6,40 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 16:58:26 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 17:45:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 19:31:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int		handle_string(t_flags *flags, char *s)
+static int	handle_width(t_flags *flags, int size, char *s)
+{
+	int		nbprint;
+
+	nbprint = 0;
+	if (flags->f & F_MINUS)
+	{
+		nbprint += ft_putnstr(s, size);
+		while (flags->width - size > 0)
+		{
+			nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
+			flags->width--;
+		}
+	}
+	else
+	{
+		while (flags->width - size > 0)
+		{
+			nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
+			flags->width--;
+		}
+		nbprint += ft_putnstr(s, size);
+	}
+	return (nbprint);
+}
+
+int			handle_string(t_flags *flags, char *s)
 {
 	int		len;
 	int		size;
@@ -26,26 +52,7 @@ int		handle_string(t_flags *flags, char *s)
 	else
 		size = len;
 	if (flags->f & F_WIDTH && flags->width > size)
-	{
-		if (flags->f & F_MINUS)
-		{
-			nbprint += ft_putnstr(s, size);
-			while (flags->width - size > 0)
-			{
-				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
-				flags->width--;
-			}
-		}
-		else
-		{
-			while (flags->width - size > 0)
-			{
-				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
-				flags->width--;
-			}
-			nbprint += ft_putnstr(s, size);
-		}
-	}
+		nbprint += handle_width(flags, size, s);
 	else
 		nbprint += ft_putnstr(s, size);
 	return (nbprint);

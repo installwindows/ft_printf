@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 18:10:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 18:24:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 19:31:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int		ft_wcstrlen(wchar_t *wcstr)
+static int	ft_wcstrlen(wchar_t *wcstr)
 {
 	int		len;
 	char	mbstr[4];
@@ -29,7 +29,7 @@ int		ft_wcstrlen(wchar_t *wcstr)
 	return (len);
 }
 
-int		print_wcstr(t_flags *flags, wchar_t *wcstr)
+static int	print_wcstr(t_flags *flags, wchar_t *wcstr)
 {
 	int		size;
 	int		nbprint;
@@ -47,7 +47,7 @@ int		print_wcstr(t_flags *flags, wchar_t *wcstr)
 	return (nbprint);
 }
 
-int		correction(wchar_t *wcstr, int size)
+static int	correction(wchar_t *wcstr, int size)
 {
 	char	mb[4];
 	int		i;
@@ -70,12 +70,10 @@ int		correction(wchar_t *wcstr, int size)
 	return (size);
 }
 
-int		handle_wcstr(t_flags *flags, wchar_t *wcstr)
+int			handle_wcstr(t_flags *flags, wchar_t *wcstr)
 {
-	size_t	size;
-	char	mb[4];
+	int		size;
 	int		nbprint;
-	int		i;
 
 	nbprint = 0;
 	if (flags->f & F_MINUS)

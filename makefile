@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/12 17:20:18 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/12 19:29:52 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ NAME = libftprintf.a
 SRC = ft_printf.c \
 	  handle_string.c \
 	  handle_wcstr.c \
-	  handle_number.c \
+	  handle_snumber.c \
+	  handle_unumber.c \
+	  print_arg.c \
 	  do_conversion.c \
 	  s_conversion.c \
 	  ls_conversion.c \
@@ -40,7 +42,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/ fclean && make -C libft/
-	gcc -c $(SRC) -Ilibft/
+	gcc -c -Wall -Werror -Wextra  $(SRC) -Ilibft/
 	ar rc $(NAME) $(OBJ) $(OBJLIB)
 	ranlib $(NAME)
 

@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/11 13:45:20 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/12 17:20:18 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,4 +53,4 @@ fclean: clean
 re: fclean all
 
 test:
-	gcc main.c $(SRC) -Ilibft/ -Llibft/ -lft -g
+	gcc -Wno-format main.c $(SRC) -Ilibft/ -Llibft/ -lft -g

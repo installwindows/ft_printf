@@ -6,18 +6,18 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 16:58:26 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/08 16:16:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:45:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int		handle_string(t_flags *flags, char *s, char c)
+int		handle_string(t_flags *flags, char *s)
 {
 	int		len;
 	int		size;
-	ssize_t	nbprint;
+	int		nbprint;
 
 	nbprint = 0;
 	len = ft_strlen(s);
@@ -32,7 +32,7 @@ int		handle_string(t_flags *flags, char *s, char c)
 			nbprint += ft_putnstr(s, size);
 			while (flags->width - size > 0)
 			{
-				nbprint += ft_putchar(c);
+				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
 				flags->width--;
 			}
 		}
@@ -40,7 +40,7 @@ int		handle_string(t_flags *flags, char *s, char c)
 		{
 			while (flags->width - size > 0)
 			{
-				nbprint += ft_putchar(c);
+				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
 				flags->width--;
 			}
 			nbprint += ft_putnstr(s, size);

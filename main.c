@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 18:27:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 16:51:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 18:37:18 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,35 @@
 
 int		main(void)
 {
-	//setlocale(LC_ALL, "");
-	goto p;
+	setlocale(LC_ALL, "");
+	goto h;
 
+	/* h */
+h:
+	{
+		printf("%d\n", printf   ("printf...: |%hD, %hD| r:", 0, USHRT_MAX));
+		printf("%d\n", ft_printf("ft_printf: |%hD, %hD| r:", 0, USHRT_MAX));
+		goto exit;
+	}
+	/* x */
+x:
+	{
+		printf("%d\n", printf   ("printf...: |%#.3o| r:", 1));
+		printf("%d\n", ft_printf("ft_printf: |%#.3o| r:", 1));
+		goto exit;
+	}
+	/* s */
+s:
+	{
+		printf("%d\n", printf   ("printf...: |%15.4S| r:", L"我是一只猫。"));
+		printf("%d\n", ft_printf("ft_printf: |%15.4S| r:", L"我是一只猫。"));
+		goto exit;
+	}
 	/* p */
 p:
 	{
-		printf("%d\n", printf   ("printf...: |%-15p| r:", 0));
-		printf("%d\n", ft_printf("ft_printf: |%-15p| r:", 0));
+		printf("%d\n", printf   ("printf...: |%05p| r:", 0));
+		printf("%d\n", ft_printf("ft_printf: |%05p| r:", 0));
 		goto exit;
 	}
 
@@ -78,7 +99,8 @@ mix:
 test:
 	{
 		char	*test = "derp";
-		printf("... %03c\n", 0);
+		printf("r:%d\n", printf("...%"));
+		printf("r:%d\n", ft_printf("ft:%"));
 		goto exit;
 	}
 exit:

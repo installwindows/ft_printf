@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 00:39:19 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 00:45:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:17:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int		error_conversion(t_flags *flags, va_list *args)
 
 	err[0] = flags->conversion;
 	err[1] = '\0';
-	return (handle_string(flags, err, ' '));
+	return (handle_string(flags, err));
 }

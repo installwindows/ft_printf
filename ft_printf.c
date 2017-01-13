@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 13:45:00 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 13:44:31 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:09:50 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int		print_arg(char **format, va_list *args)
 	precision(format, &flags);
 	length_modifier(format, &flags);
 	flags.conversion = **format;
+	if (flags.conversion == '\0')
+		return (error_conversion(&flags, args));
 	(*format)++;
 	if (args == NULL)
 		return (0);

@@ -6,13 +6,14 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 15:53:22 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:57:18 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define LARGEST(a, b) (a > b ? a : b)
+# define SMALLEST(a, b) (a < b ? a : b)
 //# pragma GCC diagnostic ignored "-Wdangling-else"
 # include <stdarg.h>
 # include <wchar.h>
@@ -41,7 +42,7 @@ typedef struct	s_flags
 
 int				ft_printf(const char *format, ...);
 				//__attribute__ ((format (printf, 1, 2)));
-int				handle_string(t_flags *flags, char *s, char c);
+int				handle_string(t_flags *flags, char *s);
 //int				handle_num(long long n, int base, t_flags *flags);
 int				handle_wcstr(t_flags *flags, wchar_t *wcstr);
 int				handle_signed_number(long long n, t_flags *f);

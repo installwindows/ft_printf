@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 18:10:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/10 22:31:22 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 18:24:50 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,35 @@ int		print_wcstr(t_flags *flags, wchar_t *wcstr)
 	return (nbprint);
 }
 
+int		correction(wchar_t *wcstr, int size)
+{
+	char	mb[4];
+	int		i;
+	int		current;
+	int		total;
+
+	i = 0;
+	total = 0;
+	while (wcstr[i])
+	{
+		current = ft_wctomb(mb, wcstr[i]);
+		total += current;
+		if (total > size)
+		{
+			size = total - current;
+			break ;
+		}
+		i++;
+	}
+	return (size);
+}
+
 int		handle_wcstr(t_flags *flags, wchar_t *wcstr)
 {
 	size_t	size;
-	char	*mbstr;
+	char	mb[4];
 	int		nbprint;
+	int		i;
 
 	nbprint = 0;
 	if (flags->f & F_MINUS)
@@ -59,14 +83,19 @@ int		handle_wcstr(t_flags *flags, wchar_t *wcstr)
 		nbprint += print_wcstr(flags, wcstr);
 		if (flags->f & F_WIDTH)
 			while (flags->width > nbprint)
-				nbprint += write(1, " ", 1);
+				nbprint += write(1, flags->f & F_ZERO ? "0" : " ", 1);
 	}
 	else
 	{
 		size = ft_wcstrlen(wcstr);
+		if (flags->f & F_PRECISION)
+		{
+			size = SMALLEST(ft_wcstrlen(wcstr), flags->precision);
+			size = correction(wcstr, size);
+		}
 		if (flags->f & F_WIDTH)
 			while (flags->width-- > size)
-				nbprint += write(1, " ", 1);
+				nbprint += write(1, flags->f & F_ZERO ? "0" : " ", 1);
 		nbprint += print_wcstr(flags, wcstr);
 	}
 	return (nbprint);

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:05:40 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 16:55:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 18:34:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int		p_conversion(t_flags *flags, va_list *args)
 
 	nbprint = 0;
 	addr = (unsigned long long)va_arg(*args, void *);
+	if (flags->f & F_ZERO)
+	{
+		flags->f |= F_PRECISION;
+		flags->precision = flags->width > 2 ? flags->width - 2 : 1;
+		flags->f |= F_MINUS;
+	}
 	if (flags->f & F_MINUS)
 	{
 		nbprint += ft_putstr("0x");

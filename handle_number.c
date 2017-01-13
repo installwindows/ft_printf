@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 15:35:12 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 17:52:38 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ int		handle_signed_number(long long n, t_flags *f)
 
 int		print_hash(unsigned long long n, t_flags *f)
 {
-	if ((f->conversion == 'o' || f->conversion == 'O'))
+	if ((f->conversion == 'o' || f->conversion == 'O') && f->precision <
+			ft_unumlen_base(n, 8))
 		return (ft_putchar('0'));
-	if (f->conversion == 'x' && !(f->f & F_PRECISION))
+	if (f->conversion == 'x' && !(f->f & F_PRECISION && f->precision == 0))
 		return (ft_putstr(n == 0 ? "0" : "0x"));
-	if (f->conversion == 'X' && !(f->f & F_PRECISION))
+	if (f->conversion == 'X' && !(f->f & F_PRECISION && f->precision == 0))
 		return (ft_putstr(n == 0 ? "0" : "0X"));
 	if (f->conversion == 'p')
 		return (ft_putstr("0x"));

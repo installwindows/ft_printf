@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:05:40 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/11 15:56:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/12 16:55:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		p_conversion(t_flags *flags, va_list *args)
 		if (!(flags->f & F_PRECISION && flags->precision == 0 && addr == 0))
 			nbprint += ft_putudigit_base(addr, 16, ft_itoc);
 		if (flags->f & F_WIDTH && flags->width > nbprint)
-			ft_putnchar(' ', flags->width - nbprint);
+			nbprint += ft_putnchar(' ', flags->width - nbprint);
 	}
 	else
 	{

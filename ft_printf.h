@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 19:32:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/13 21:03:36 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				x_conversion(t_flags *flags, va_list *args);
 int				cx_conversion(t_flags *flags, va_list *args);
 int				c_conversion(t_flags *flags, va_list *args);
 int				lc_conversion(t_flags *flags, va_list *args);
+int				b_conversion(t_flags *flags, va_list *args);
 int				error_conversion(t_flags *flags);
 
 #endif

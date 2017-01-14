@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/12 19:44:06 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/13 21:03:48 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = ft_printf.c \
 	  cx_conversion.c \
 	  c_conversion.c \
 	  lc_conversion.c \
+	  b_conversion.c \
 	  error_conversion.c
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:05:09 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/13 19:24:13 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/13 20:21:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int			print_arg(char **format, va_list *args)
 	ft_memset(&flags, 0, sizeof(t_flags));
 	while (**format && ft_strchr("#0+- ", **format))
 		flag_characters(format, &flags);
-	//flag_characters(format, &flags);
 	field_width(format, &flags);
 	precision(format, &flags);
 	length_modifier(format, &flags);

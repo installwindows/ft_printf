@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:20:17 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 19:28:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/13 20:19:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,20 @@ static int	handle_non_minus(t_flags *f, int neg, long long n)
 	nbprint = 0;
 	if (f->f & F_SPACE && !(f->f & F_PLUS) && !neg)
 		nbprint += ft_putchar(' ');
-	if (f->f & F_PLUS && !neg)
-		nbprint += ft_putchar('+');
-	neg = neg + nbprint + (ft_snumlen(n) > f->precision ? ft_snumlen(n) :
-			f->precision);
+	if (f->f & F_PLUS && f->f & F_ZERO && !neg)
+		ft_putchar('+');
+	neg = neg + nbprint + (!neg && f->f & F_PLUS) + (ft_snumlen(n) >
+			f->precision ? ft_snumlen(n) - (n == 0) : f->precision);
 	if (n < 0 && f->f & F_ZERO)
 		nbprint += ft_putchar('-');
 	if (f->f & F_WIDTH && f->width > neg)
 		nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width - neg);
+	if (f->f & F_PLUS && !(f->f & F_ZERO) && n >= 0)
+		ft_putchar('+');
 	if (n < 0 && !(f->f & F_ZERO))
 		nbprint += ft_putchar('-');
-	nbprint += print_signed_number(n, f);
-	return (nbprint);
+	nbprint += f->f & F_ZERO && n == 0 ? 0 : print_signed_number(n, f);
+	return (nbprint + (f->f & F_PLUS && n >= 0));
 }
 
 int			handle_signed_number(long long n, t_flags *f)

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 15:02:42 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 20:12:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/13 20:04:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,44 @@ static int	print_hash(unsigned long long n, t_flags *f)
 	return (0);
 }
 
-int			handle_unsigned_number(unsigned long long n, int b, t_flags *f)
+static int	bits_to_print(t_flags *f, unsigned long long n)
 {
 	int		nbprint;
 
 	nbprint = 0;
-	if (f->f & F_HASH)
-		nbprint += print_hash(n, f);
+	if (ft_toupper(f->conversion) == 'X' && f->f & F_HASH &&
+		!(f->f & F_PRECISION && f->precision == 0))
+		nbprint += (n == 0 ? 1 : 2);
+	else if (ft_toupper(f->conversion) == 'O' && f->f & F_HASH &&
+			f->precision < ft_unumlen_base(n, 8))
+		nbprint += 1;
+	return (nbprint);
+}
+
+int			handle_unsigned_number(unsigned long long n, int b, t_flags *f)
+{
+	int		nbprint;
+
+	nbprint = bits_to_print(f, n);
 	if (f->f & F_MINUS)
 	{
+		if (f->f & F_HASH)
+			print_hash(n, f);
 		nbprint += print_unsigned_number(n, b, f);
 		if (f->f & F_WIDTH && f->width > nbprint)
 			nbprint += ft_putnchar(' ', f->width - nbprint);
 	}
 	else
 	{
+		if (ft_toupper(f->conversion) == 'X' && f->f & F_HASH && f->f & F_ZERO)
+			print_hash(n, f);
 		if (f->f & F_WIDTH && f->width > nbprint + (ft_unumlen_base(n, b) >
-					f->precision ? ft_unumlen_base(n, b) : f->precision))
+			f->precision ? ft_unumlen_base(n, b) : f->precision))
 			nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width -
 					(nbprint + (ft_unumlen_base(n, b) > f->precision ?
-					ft_unumlen_base(n, b) : f->precision)));
+					ft_unumlen_base(n, b) - (n == 0) : f->precision)));
+		if (f->f & F_HASH && !(f->f & F_ZERO))
+			print_hash(n, f);
 		nbprint += print_unsigned_number(n, b, f);
 	}
 	return (nbprint);

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 00:24:33 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/15 19:53:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/15 23:07:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*eval_exponent(unsigned long long num, int exponent, char *str)
 {
 	char	*tmp;
 
-	tmp = ft_strrev(ft_bignum_mtp(str, 1 << exponent));
+	tmp = ft_strrev(ft_bignum_mtp(str, 1L << exponent));
 	free(str);
 	if (num & 0x8000000000000000ull)
 	{
@@ -60,6 +60,43 @@ static char	*get_float(double d)
 	return (eval_exponent(num, (num >> 52) - 1023, str));
 }
 
+static char	*createdotnum(int dot)
+{
+	char	*num;
+	int		i;
+
+	i = 1;
+	num = malloc(dot + 2);
+	num[0] = '.';
+	num[dot] = '1';
+	num[dot + 1] = '\0';
+	while (i < dot)
+		num[i++] = '0';
+	return (ft_strrev(num));
+}
+
+static char	*round(int p, char *n)
+{
+	int			dot;
+	char		*tmp;
+	char		*num;
+
+	dot = ft_strichr(n, '.');
+	if (dot == -1)
+		return (n);
+	if (dot + p + 1 < (int)ft_strlen(n))
+	{
+		if (n[dot + p + 1] - '0' >= 5)
+		{
+			tmp = ft_bignum_add((num = createdotnum(p)), ft_strrev(n));
+			free(n);
+			free(num);
+			return (ft_strrev(tmp));
+		}
+	}
+	return (n);
+}
+
 static int	print_float(t_flags *f, char *n)
 {
 	int		nbprint;
@@ -84,9 +121,9 @@ int			f_conversion(t_flags *flags, va_list *args)
 
 	nbprint = 0;
 	d = va_arg(*args, double);
-	r = get_float(d);
 	if (!(flags->f & F_PRECISION))
 		flags->precision = 6;
+	r = round(flags->precision, get_float(d));
 	if (flags->f & F_MINUS)
 	{
 		if (flags->f & F_PLUS && d >= 0)

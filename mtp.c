@@ -12,22 +12,54 @@ char		*shiftdot(const char *n1, int by)
 	int		j;
 	int		dot;
 
-	dot = 0;
+	dot = -1;
 	nodot = malloc(ft_strlen(n1) + by + 1);
+	ft_memset(nodot, 0, ft_strlen(n1) + by + 1);
 	i = 0;
-	while (*n1)
+	j = 0;
+	while (n1[j])
 	{
-		if (*n1 != '.')
-			nodot[i++] = *n1;
+		if (n1[j] != '.')
+			nodot[i++] = n1[j];
 		else
-			dot = i > 0 ? i - 1 : 1;
-		n1++;
+			dot = ft_strlen(n1) - i;
+		j++;
 	}
-	j = i - 1;
-	while (j + dot++ < by)
-		nodot[i++] = '0';
-	nodot[i] = '\0';
+	if (dot >= 0 && dot < by)
+		while (dot++ < by)
+			nodot[i++] = '0';
+	else if (dot == -1)
+		while (by-- > 0)
+			nodot[i++] = '0';
+	printf("nodot: %s\n", nodot);
 	return (nodot);
+}
+
+char		*shiftresult(char *r, int by)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	tmp = malloc(by + ft_strlen(r) + 1);
+	i = 0;
+	j = 0;
+	if (by >= (int)ft_strlen(r))
+	{
+		tmp[i++] = '0';
+		tmp[i++] = '.';
+		while (--by >= (int)ft_strlen(r))
+			tmp[i++] = '0';
+		while (j < (int)ft_strlen(r))
+			tmp[i++] = r[j++];
+	}
+	else
+		while (j < (int)ft_strlen(r))
+			if (by > 0 && i == (int)ft_strlen(r) - by)
+				tmp[i++] = '.';
+			else
+				tmp[i++] = r[j++];
+	return (tmp);
 }
 
 char		*ft_bignum_mtp(const char *n1, const char *n2)
@@ -59,8 +91,8 @@ char		*ft_bignum_mtp(const char *n1, const char *n2)
 		str[i] = (d[i] % 10) + '0';
 		i++;
 	}
-	//while (i > 0 && str[--i] == '0')
-	//	str[i] = '\0';
+	while (i > 0 && str[--i] == '0')
+		str[i] = '\0';
 	return (ft_strrev(str));
 }
 
@@ -69,29 +101,21 @@ char		*mtp(const char *n1, const char *n2)
 	char	*d1;
 	char	*d2;
 	char	*r;
-	int		i;
-	int		j;
+	int		shift;
 
-	d1 = shiftdot(n1, LARGEST(ft_strichr(n1, '.'), ft_strichr(n2, '.')));
-	d2 = shiftdot(n2, LARGEST(ft_strichr(n1, '.'), ft_strichr(n2, '.')));
+	shift = ft_strlen(n1) - (ft_strichr(n1, '.') >= 0 ? ft_strichr(n1, '.') + 1: ft_strlen(n1));
+	shift = LARGEST(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ? ft_strichr(n2, '.') + 1 : ft_strlen(n2)), (unsigned long)shift);
+	printf("shift: %d\n", shift);
+	d1 = shiftdot(n1, shift);
+	d2 = shiftdot(n2, shift);
 	ft_strrev(d1);
 	ft_strrev(d2);
 	r = ft_bignum_mtp(d1, d2);
 	free(d1);
 	free(d2);
-	d1 = malloc(ft_strlen(r) + 1);
-	i = 0;
-	j = 0;
-	while (r[j])
-	{
-		if (i == LARGEST(ft_strichr(n1, '.'), ft_strichr(n2, '.')))
-			d1[i] = '.';
-		else
-			d1[i] = r[j++];
-		i++;
-	}
-	free(r);
-	return (d1);
+	printf("r: %s\n", r);
+	r = shiftresult(r, shift * 2);
+	return (r);
 }
 int		main(int argc, char **argv)
 {

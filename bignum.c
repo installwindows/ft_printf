@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 17:20:20 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/15 23:05:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 02:44:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static char	addchars(char n1, char n2, char *reminder)
 	return (r + '0');
 }
 
+/*
 char		*ft_bignum_mtp(const char *n1, unsigned long long by)
 {
 	char	*result;
@@ -42,7 +43,7 @@ char		*ft_bignum_mtp(const char *n1, unsigned long long by)
 	}
 	return (result);
 }
-
+*/
 static void	reminder(const char *str1, const char *str2, char *result)
 {
 	char	reminder;

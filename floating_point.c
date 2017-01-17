@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 00:24:33 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/15 23:07:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 03:11:01 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include "mantissa.h"
 #include "ft_bignum.h"
 #include "libft.h"
+#include "exponent.h"
 
 static char	*eval_exponent(unsigned long long num, int exponent, char *str)
 {
 	char	*tmp;
+	char	*exp;
 
-	tmp = ft_strrev(ft_bignum_mtp(str, 1L << exponent));
+	tmp = (mtp(ft_strrev(str), g_exponent[exponent]));
 	free(str);
 	if (num & 0x8000000000000000ull)
 	{
@@ -75,7 +77,7 @@ static char	*createdotnum(int dot)
 	return (ft_strrev(num));
 }
 
-static char	*round(int p, char *n)
+static char	*round_bignum(int p, char *n)
 {
 	int			dot;
 	char		*tmp;
@@ -123,7 +125,7 @@ int			f_conversion(t_flags *flags, va_list *args)
 	d = va_arg(*args, double);
 	if (!(flags->f & F_PRECISION))
 		flags->precision = 6;
-	r = round(flags->precision, get_float(d));
+	r = round_bignum(flags->precision, get_float(d));
 	if (flags->f & F_MINUS)
 	{
 		if (flags->f & F_PLUS && d >= 0)

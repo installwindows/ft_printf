@@ -1,11 +1,10 @@
 #include "libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_bignum.h"
 # define LARGEST(a, b) (a > b ? a : b)
 
-
-
-char		*shiftdot(const char *n1, int by)
+static char	*shiftdot(const char *n1, int by)
 {
 	char	*nodot;
 	int		i;
@@ -31,17 +30,18 @@ char		*shiftdot(const char *n1, int by)
 	else if (dot == -1)
 		while (by-- > 0)
 			nodot[i++] = '0';
-	printf("nodot: %s\n", nodot);
+	//printf("nodot: %s\n", nodot);
 	return (nodot);
 }
 
-char		*shiftresult(char *r, int by)
+static char	*shiftresult(char *r, int by)
 {
 	char	*tmp;
 	int		i;
 	int		j;
 
 	tmp = malloc(by + ft_strlen(r) + 1);
+	ft_memset(tmp, 0, ft_strlen(r) + by + 1);
 	i = 0;
 	j = 0;
 	if (by >= (int)ft_strlen(r))
@@ -59,10 +59,11 @@ char		*shiftresult(char *r, int by)
 				tmp[i++] = '.';
 			else
 				tmp[i++] = r[j++];
+	free(r);
 	return (tmp);
 }
 
-char		*ft_bignum_mtp(const char *n1, const char *n2)
+static char	*ft_bignum_mtp(const char *n1, const char *n2)
 {
 	int		d[ft_strlen(n1) + ft_strlen(n2)];
 	int		i;
@@ -105,7 +106,7 @@ char		*mtp(const char *n1, const char *n2)
 
 	shift = ft_strlen(n1) - (ft_strichr(n1, '.') >= 0 ? ft_strichr(n1, '.') + 1: ft_strlen(n1));
 	shift = LARGEST(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ? ft_strichr(n2, '.') + 1 : ft_strlen(n2)), (unsigned long)shift);
-	printf("shift: %d\n", shift);
+	//printf("shift: %d\n", shift);
 	d1 = shiftdot(n1, shift);
 	d2 = shiftdot(n2, shift);
 	ft_strrev(d1);
@@ -113,10 +114,12 @@ char		*mtp(const char *n1, const char *n2)
 	r = ft_bignum_mtp(d1, d2);
 	free(d1);
 	free(d2);
-	printf("r: %s\n", r);
+	//printf("r: %s\n", r);
 	r = shiftresult(r, shift * 2);
 	return (r);
 }
+
+/*
 int		main(int argc, char **argv)
 {
 	if (argc == 3)
@@ -126,3 +129,4 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 		printf("%s\n", shiftdot((argv[1]), 1));
 }
+*/

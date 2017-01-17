@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 06:28:03 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/15 23:05:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 02:29:18 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define FT_BIGNUM_H
 
 char	*ft_bignum_add(const char *n1, const char *n2);
-char	*ft_bignum_mtp(const char *n1, unsigned long long by);
+char	*mtp(const char *n1, const char *n2);
 
 #endif

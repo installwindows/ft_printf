@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:05:09 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/13 20:21:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 20:11:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int			print_arg(char **format, va_list *args)
 		flag_characters(format, &flags);
 	field_width(format, &flags);
 	precision(format, &flags);
-	length_modifier(format, &flags);
+	while (**format && ft_strchr("hljz", **format))
+		length_modifier(format, &flags);
 	flags.conversion = **format;
 	if (flags.conversion == '\0')
 		return (error_conversion(&flags));

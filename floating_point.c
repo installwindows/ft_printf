@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 00:24:33 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/17 18:43:23 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 19:55:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ char		*get_float(double d)
 		mask >>= 1;
 		i++;
 	}
-	return (eval_exponent(num, (num >> 52) - 1023, str));
+	return (eval_exponent(num, ((num >> 52) & ~2048) - 1023, str));
 }

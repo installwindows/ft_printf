@@ -1,8 +1,19 @@
-#include "libft/libft.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mtp.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/17 19:08:45 by varnaud           #+#    #+#             */
+/*   Updated: 2017/01/17 19:16:13 by varnaud          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
+#include "ft_printf.h"
 #include "ft_bignum.h"
-# define LARGEST(a, b) (a > b ? a : b)
+#include "libft.h"
 
 static char	*shiftdot(const char *n1, int by)
 {
@@ -30,7 +41,6 @@ static char	*shiftdot(const char *n1, int by)
 	else if (dot == -1)
 		while (by-- > 0)
 			nodot[i++] = '0';
-	//printf("nodot: %s\n", nodot);
 	return (nodot);
 }
 
@@ -70,20 +80,14 @@ static char	*ft_bignum_mtp(const char *n1, const char *n2)
 	int		j;
 	char	*str;
 
-	ft_memset(d, 0, (ft_strlen(n1) + ft_strlen(n2)) * sizeof(int));
-	i = 0;
-	while (i < (int)ft_strlen(n1))
-	{
-		j = 0;
+	ft_memset(d, !(i = -1), (ft_strlen(n1) + ft_strlen(n2)) * sizeof(int));
+	while (++i < (int)ft_strlen(n1) && !(j = 0))
 		while (j < (int)ft_strlen(n2))
 		{
 			d[i + j] += ((n1[i] - '0') * (n2[j] - '0'));
 			j++;
 		}
-		i++;
-	}
-	str = malloc(ft_strlen(n1) + ft_strlen(n2) + 1);
-	ft_memset(str, 0, ft_strlen(n1) + ft_strlen(n2) + 1);
+	str = ft_strnew(ft_strlen(n1) + ft_strlen(n2) + 1);
 	i = 0;
 	while (i < (int)(ft_strlen(n1) + ft_strlen(n2)))
 	{
@@ -104,9 +108,10 @@ char		*mtp(const char *n1, const char *n2)
 	char	*r;
 	int		shift;
 
-	shift = ft_strlen(n1) - (ft_strichr(n1, '.') >= 0 ? ft_strichr(n1, '.') + 1: ft_strlen(n1));
-	shift = LARGEST(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ? ft_strichr(n2, '.') + 1 : ft_strlen(n2)), (unsigned long)shift);
-	//printf("shift: %d\n", shift);
+	shift = ft_strlen(n1) - (ft_strichr(n1, '.') >= 0 ? ft_strichr(n1, '.') + 1
+			: ft_strlen(n1));
+	shift = LARGEST(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ?
+			ft_strichr(n2, '.') + 1 : ft_strlen(n2)), (unsigned long)shift);
 	d1 = shiftdot(n1, shift);
 	d2 = shiftdot(n2, shift);
 	ft_strrev(d1);
@@ -114,19 +119,6 @@ char		*mtp(const char *n1, const char *n2)
 	r = ft_bignum_mtp(d1, d2);
 	free(d1);
 	free(d2);
-	//printf("r: %s\n", r);
 	r = shiftresult(r, shift * 2);
 	return (r);
 }
-
-/*
-int		main(int argc, char **argv)
-{
-	if (argc == 3)
-	{
-		printf("%s\n", mtp(argv[1], argv[2]));
-	}
-	if (argc == 2)
-		printf("%s\n", shiftdot((argv[1]), 1));
-}
-*/

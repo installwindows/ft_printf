@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/17 02:56:56 by varnaud          ###   ########.fr        #
+#    Updated: 2017/01/17 18:45:42 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = ft_printf.c \
 	  c_conversion.c \
 	  lc_conversion.c \
 	  b_conversion.c \
+	  f_conversion.c \
 	  bignum.c \
 	  floating_point.c \
 	  mtp.c \

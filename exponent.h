@@ -6,14 +6,14 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 02:36:37 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/17 03:32:18 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/17 19:05:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPONENT_H
 # define EXPONENT_H
 
-static const char *exp_table[105] = {
+static const char *g_exp_table[105] = {
 	".0000000000000002220446049250313080847263336181640625",
 	".0000000000000004440892098500626161694526672363281250",
 	".0000000000000008881784197001252323389053344726562500",
@@ -120,6 +120,6 @@ static const char *exp_table[105] = {
 	"2251799813685248",
 	"4503599627370496"
 };
-const char **g_exponent = &exp_table[52];
+const char **g_exponent = &g_exp_table[52];
 
 #endif

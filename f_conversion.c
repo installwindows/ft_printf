@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 18:36:25 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/17 19:05:17 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/27 02:14:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	print_float(t_flags *f, char *n)
 	int		dot;
 
 	dot = ft_strichr(n, '.');
-	nbprint = ft_putnstr(n, dot == -1 ? ft_strlen(n) : dot);
+	nbprint = ft_putnstr(n, dot == -1 ? ft_strlen(n) : (unsigned int)dot);
 	if (f->f & F_HASH)
 		nbprint += ft_putchar('.');
 	if (f->precision > 0 && dot != -1)

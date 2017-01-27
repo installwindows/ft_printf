@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:20:17 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/13 20:19:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/27 02:12:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 
 static int	print_signed_number(long long n, t_flags *f)
 {
-	int		neg;
 	int		nbprint;
 
 	nbprint = 0;
-	neg = n < 0;
 	if (f->f & F_PRECISION && f->precision > ft_snumlen(n))
 		nbprint += ft_putnchar('0', f->precision - ft_snumlen(n));
 	if (f->f & F_PRECISION && f->precision == 0 && n == 0)

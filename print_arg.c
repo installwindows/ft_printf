@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:05:09 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/17 20:11:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/01/27 06:01:34 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,36 @@ static void	flag_characters(char **format, t_flags *flags)
 	(*format)++;
 }
 
-static void	field_width(char **format, t_flags *flags)
+static void	field_width(char **format, t_flags *flags, va_list *args)
 {
-	if (!ft_isdigit(**format))
-		return ;
-	flags->width = ft_atoi(*format);
-	if (flags->width > 0 || **format == '0')
+	if (**format == '*')
 	{
 		flags->f |= F_WIDTH;
-		(*format) += ft_numlen(flags->width);
+		flags->width = va_arg(*args, int);
+		(*format)++;
+	}
+	else
+	{
+		if (!ft_isdigit(**format))
+			return ;
+		flags->width = ft_atoi(*format);
+		if (flags->width > 0 || **format == '0')
+		{
+			flags->f |= F_WIDTH;
+			(*format) += ft_numlen(flags->width);
+		}
 	}
 }
 
-static void	precision(char **format, t_flags *flags)
+static void	precision(char **format, t_flags *flags, va_list *args)
 {
 	if (**format == '.')
 	{
 		flags->f |= F_PRECISION;
-		flags->precision = ft_atoi(++(*format));
+		if (*++(*format) == '*')
+			flags->precision = va_arg(*args, int);
+		else
+			flags->precision = ft_atoi(*format);
 		if (flags->precision > 0 || **format == '0')
 			(*format) += ft_numlen(flags->precision);
 	}
@@ -89,8 +101,8 @@ int			print_arg(char **format, va_list *args)
 	ft_memset(&flags, 0, sizeof(t_flags));
 	while (**format && ft_strchr("#0+- ", **format))
 		flag_characters(format, &flags);
-	field_width(format, &flags);
-	precision(format, &flags);
+	field_width(format, &flags, args);
+	precision(format, &flags, args);
 	while (**format && ft_strchr("hljz", **format))
 		length_modifier(format, &flags);
 	flags.conversion = **format;

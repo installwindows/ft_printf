@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 19:20:17 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/27 02:12:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/08 21:46:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	handle_non_minus(t_flags *f, int neg, long long n)
 	if (f->f & F_PLUS && f->f & F_ZERO && !neg)
 		ft_putchar('+');
 	neg = neg + nbprint + (!neg && f->f & F_PLUS) + (ft_snumlen(n) >
-			f->precision ? ft_snumlen(n) - (n == 0) : f->precision);
+			f->precision ? ft_snumlen(n) : f->precision);
 	if (n < 0 && f->f & F_ZERO)
 		nbprint += ft_putchar('-');
 	if (f->f & F_WIDTH && f->width > neg)

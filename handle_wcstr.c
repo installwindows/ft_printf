@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 18:10:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 19:31:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/21 18:25:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	print_wcstr(t_flags *flags, wchar_t *wcstr)
 		size = ft_wctomb(mbstr, *wcstr);
 		if (flags->f & F_PRECISION && nbprint + size > flags->precision)
 			break ;
-		nbprint += write(1, mbstr, size);
+		nbprint += write(flags->fd, mbstr, size);
 		wcstr++;
 	}
 	return (nbprint);
@@ -81,7 +81,7 @@ int			handle_wcstr(t_flags *flags, wchar_t *wcstr)
 		nbprint += print_wcstr(flags, wcstr);
 		if (flags->f & F_WIDTH)
 			while (flags->width > nbprint)
-				nbprint += write(1, flags->f & F_ZERO ? "0" : " ", 1);
+				nbprint += write(flags->fd, flags->f & F_ZERO ? "0" : " ", 1);
 	}
 	else
 	{
@@ -93,7 +93,7 @@ int			handle_wcstr(t_flags *flags, wchar_t *wcstr)
 		}
 		if (flags->f & F_WIDTH)
 			while (flags->width-- > size)
-				nbprint += write(1, flags->f & F_ZERO ? "0" : " ", 1);
+				nbprint += write(flags->fd, flags->f & F_ZERO ? "0" : " ", 1);
 		nbprint += print_wcstr(flags, wcstr);
 	}
 	return (nbprint);

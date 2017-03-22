@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 18:36:25 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/27 02:14:09 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/21 19:56:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ static int	print_float(t_flags *f, char *n)
 	int		dot;
 
 	dot = ft_strichr(n, '.');
-	nbprint = ft_putnstr(n, dot == -1 ? ft_strlen(n) : (unsigned int)dot);
+	nbprint = ft_putnstr_fd(n, dot == -1 ? ft_strlen(n) : (unsigned int)dot,
+																		f->fd);
 	if (f->f & F_HASH)
-		nbprint += ft_putchar('.');
+		nbprint += ft_putchar_fd('.', f->fd);
 	if (f->precision > 0 && dot != -1)
-		nbprint += ft_putnstr(n + dot, f->precision + 1);
+		nbprint += ft_putnstr_fd(n + dot, f->precision + 1, f->fd);
 	if (dot == -1 && f->f & F_HASH)
-		nbprint += ft_putnchar('0', f->precision);
+		nbprint += ft_putnchar_fd('0', f->precision, f->fd);
 	return (nbprint);
 }
 
@@ -70,31 +71,31 @@ static char	*round_bignum(int p, char *n)
 	return (n);
 }
 
-static int	handle_flags(t_flags *flags, char *r, int nbprint, double d)
+static int	handle_flags(t_flags *f, char *r, int nbprint, double d)
 {
-	if (flags->f & F_MINUS)
+	if (f->f & F_MINUS)
 	{
-		if (flags->f & F_PLUS && d >= 0)
-			nbprint += ft_putchar('+');
-		if (flags->f & F_SPACE && !(flags->f & F_PLUS) && d >= 0)
-			nbprint += ft_putchar(' ');
-		nbprint += print_float(flags, r);
-		if (flags->f & F_WIDTH)
-			while (nbprint < flags->width)
-				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
+		if (f->f & F_PLUS && d >= 0)
+			nbprint += ft_putchar_fd('+', f->fd);
+		if (f->f & F_SPACE && !(f->f & F_PLUS) && d >= 0)
+			nbprint += ft_putchar_fd(' ', f->fd);
+		nbprint += print_float(f, r);
+		if (f->f & F_WIDTH)
+			while (nbprint < f->width)
+				nbprint += ft_putchar_fd(f->f & F_ZERO ? '0' : ' ', f->fd);
 	}
 	else
 	{
-		if (flags->f & F_WIDTH)
-			while (nbprint + flags->precision + LARGEST(ft_strichr(r, '.')
-				+ 1, 0) + ((flags->f & F_PLUS || flags->f & F_SPACE) &&
-				d >= 0 ? 1 : 0) < flags->width)
-				nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
-		if (flags->f & F_PLUS && d >= 0)
-			nbprint += ft_putchar('+');
-		if (flags->f & F_SPACE && !(flags->f & F_PLUS) && d >= 0)
-			nbprint += ft_putchar(' ');
-		nbprint += print_float(flags, r);
+		if (f->f & F_WIDTH)
+			while (nbprint + f->precision + LARGEST(ft_strichr(r, '.')
+				+ 1, 0) + ((f->f & F_PLUS || f->f & F_SPACE) &&
+				d >= 0 ? 1 : 0) < f->width)
+				nbprint += ft_putchar_fd(f->f & F_ZERO ? '0' : ' ', f->fd);
+		if (f->f & F_PLUS && d >= 0)
+			nbprint += ft_putchar_fd('+', f->fd);
+		if (f->f & F_SPACE && !(f->f & F_PLUS) && d >= 0)
+			nbprint += ft_putchar_fd(' ', f->fd);
+		nbprint += print_float(f, r);
 	}
 	return (nbprint);
 }

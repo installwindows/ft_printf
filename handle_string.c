@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 16:58:26 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 19:31:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/21 19:45:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	handle_width(t_flags *flags, int size, char *s)
 	nbprint = 0;
 	if (flags->f & F_MINUS)
 	{
-		nbprint += ft_putnstr(s, size);
+		nbprint += ft_putnstr_fd(s, size, flags->fd);
 		while (flags->width - size > 0)
 		{
-			nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
+			nbprint += ft_putchar_fd(flags->f & F_ZERO ? '0' : ' ', flags->fd);
 			flags->width--;
 		}
 	}
@@ -31,10 +31,10 @@ static int	handle_width(t_flags *flags, int size, char *s)
 	{
 		while (flags->width - size > 0)
 		{
-			nbprint += ft_putchar(flags->f & F_ZERO ? '0' : ' ');
+			nbprint += ft_putchar_fd(flags->f & F_ZERO ? '0' : ' ', flags->fd);
 			flags->width--;
 		}
-		nbprint += ft_putnstr(s, size);
+		nbprint += ft_putnstr_fd(s, size, flags->fd);
 	}
 	return (nbprint);
 }
@@ -54,6 +54,6 @@ int			handle_string(t_flags *flags, char *s)
 	if (flags->f & F_WIDTH && flags->width > size)
 		nbprint += handle_width(flags, size, s);
 	else
-		nbprint += ft_putnstr(s, size);
+		nbprint += ft_putnstr_fd(s, size, flags->fd);
 	return (nbprint);
 }

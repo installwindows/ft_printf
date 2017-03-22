@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:10:20 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/12 18:52:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/03/21 19:48:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static int	handle_c(t_flags *f, unsigned char c)
 	nbprint = 0;
 	if (f->f & F_MINUS)
 	{
-		nbprint += write(1, &c, 1);
+		nbprint += write(f->fd, &c, 1);
 		if (f->f & F_WIDTH && f->width > nbprint)
-			nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width -
-					nbprint);
+			nbprint += ft_putnchar_fd(f->f & F_ZERO ? '0' : ' ', f->width -
+					nbprint, f->fd);
 	}
 	else
 	{
 		if (f->f & F_WIDTH && f->width > nbprint + 1)
-			nbprint += ft_putnchar(f->f & F_ZERO ? '0' : ' ', f->width -
-					(nbprint + 1));
-		nbprint += write(1, &c, 1);
+			nbprint += ft_putnchar_fd(f->f & F_ZERO ? '0' : ' ', f->width -
+					(nbprint + 1), f->fd);
+		nbprint += write(f->fd, &c, 1);
 	}
 	return (nbprint);
 }
@@ -48,15 +48,15 @@ static int	handle_wc(t_flags *f, wchar_t wc)
 	nbprint = 0;
 	if (f->f & F_MINUS)
 	{
-		nbprint += write(1, mb, size);
+		nbprint += write(f->fd, mb, size);
 		if (f->f & F_WIDTH && f->width > nbprint + 1)
-			nbprint += ft_putnchar(' ', f->width - nbprint + 1);
+			nbprint += ft_putnchar_fd(' ', f->width - nbprint + 1, f->fd);
 	}
 	else
 	{
 		if (f->f & F_WIDTH && f->width > nbprint + 1)
-			nbprint += ft_putnchar(' ', f->width - nbprint + 1);
-		nbprint += write(1, mb, size);
+			nbprint += ft_putnchar_fd(' ', f->width - nbprint + 1, f->fd);
+		nbprint += write(f->fd, mb, size);
 	}
 	return (nbprint);
 }

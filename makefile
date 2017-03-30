@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:46:41 by varnaud           #+#    #+#              #
-#    Updated: 2017/01/17 18:45:42 by varnaud          ###   ########.fr        #
+#    Updated: 2017/03/29 23:05:26 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,17 @@ OBJLIB = libft/*.o
 all: $(NAME)
 
 $(NAME):
-	make -C libft/ fclean && make -C libft/
+	make -C libft/
 	gcc -c -Wall -Werror -Wextra  $(SRC) -Ilibft/
 	ar rc $(NAME) $(OBJ) $(OBJLIB)
 	ranlib $(NAME)
 
 clean:
+	make -C libft clean
 	rm -rf $(OBJ)
 
 fclean: clean
+	make -C libft fclean
 	rm -rf $(NAME)
 
 re: fclean all
